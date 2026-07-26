@@ -1,0 +1,45 @@
+name: Weekly Pagsanjan Farmland Snapshot
+
+on:
+  schedule:
+    - cron: '0 23 * * 0'   # Sundays 23:00 UTC = Mondays 7am PH time (UTC+8)
+  workflow_dispatch: {}     # lets you trigger a run manually from the Actions tab
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Run weekly snapshot
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude -p "Run the weekly Pagsanjan farmland snapshot per CLAUDE.md. \
+          Write the snapshot JSON to snapshots/, the written market read to reports/, \
+          and the dashboard HTML to BOTH docs/index.html (overwrite — this is the \
+          stable shareable link) and docs/archive/dashboard-<today's date>.html \
+          (dated copy). Then stop — do not commit." \
+          --output-format json \
+          --allowedTools "Read" "Write" "WebSearch" "WebFetch" \
+          --max-turns 20 \
+          > run-log.json
+
+      - name: Commit results
+        run: |
+          git config user.name "pagsanjan-land-agent"
+          git config user.email "actions@github.com"
+          git add snapshots/ reports/ docs/
+          git diff --cached --quiet || git commit -m "Weekly snapshot $(date +%Y-%m-%d)"
+          git push
+
+      - name: Upload run log
+        uses: actions/upload-artifact@v4
+        with:
+          name: run-log-${{ github.run_number }}
+          path: run-log.json
