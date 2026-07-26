@@ -115,6 +115,27 @@ WRITTEN MARKET READ (a few sentences below the dashboard)
 - Call out aging vs cleared inventory and what ₱/sqm band sells fastest.
 - Give one concrete pricing recommendation for a raw 0.5-1 ha Pagsanjan parcel.
 
+ITERATION LIMITS (applies to EVERY task and function in this document — not just
+verification. This includes per-site searches, per-listing checks, deduplication,
+₱/sqm reconciliation, snapshot diffing, dashboard generation, and any other
+repeatable or self-checking step.)
+- Cap any repeatable/retry-style step at 5 attempts (turns). Examples: re-fetching a
+  page after a failed fetch, re-searching with a reformulated query, trying to
+  reconcile a mismatched ₱/sqm, resolving a duplicate across sources, or retrying a
+  file write.
+- If a step is not resolved within 5 attempts, STOP retrying that specific step. Do
+  not loop indefinitely and do not keep expanding scope to "figure it out."
+- Never fabricate a result to force a step to completion within the cap. When a step
+  is stopped unresolved:
+  * If it's a listing/row: drop it (consistent with the existing "when in doubt,
+    drop it" rule elsewhere in this document).
+  * If it's a structural step (e.g. a source returned nothing usable, or a snapshot
+    file couldn't be parsed): stop that step, note it plainly in the "Sourcing &
+    honesty notes" section of the dashboard, and continue with the rest of the run.
+- This cap is global and applies independently to each sub-task — hitting the limit
+  on one listing or one source does not consume budget for any other listing, source,
+  or step.
+
 GUARDRAILS / SELF-CHECK BEFORE FINALIZING
 - Every link works: verified links open an individual post; indicative links open a
   search page (never a fabricated post URL).
@@ -122,3 +143,5 @@ GUARDRAILS / SELF-CHECK BEFORE FINALIZING
 - No invented dates. No row outside the ~10 km scope. No structures included.
 - Verified and indicative rows are clearly distinguishable.
 - If a site returned nothing usable this week, say so plainly rather than padding.
+- No task or sub-task looped past 5 attempts on an unresolved step — per ITERATION
+  LIMITS above, anything stopped this way is dropped or reported, never faked.
