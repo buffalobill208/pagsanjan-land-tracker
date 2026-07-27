@@ -27,7 +27,7 @@ jobs:
           (dated copy). Then stop — do not commit." \
           --output-format json \
           --allowedTools "Read" "Write" "WebSearch" "WebFetch" \
-          --max-turns 10 \
+          --max-turns 40 \
           2>&1 | tee run-log.json
 
       - name: Commit results
