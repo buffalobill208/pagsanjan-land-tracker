@@ -1,499 +1,447 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pagsanjan Farmland Snapshot — 27 July 2026</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farm Land Market — Pagsanjan Area, Laguna</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-  :root {
-    color-scheme: light;
-    --surface-1: #fcfcfb;
-    --page: #f9f9f7;
-    --text-primary: #0b0b0b;
-    --text-secondary: #52514e;
-    --muted: #898781;
-    --grid: #e1e0d9;
-    --baseline: #c3c2b7;
-    --border: rgba(11,11,11,0.10);
-    --below: #2a78d6;
-    --near: #898781;
-    --above: #e34948;
-    --verified: #0ca30c;
-    --warn: #fab219;
-  }
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-    --surface-1: #1a1a19;
-    --page: #0d0d0d;
-    --text-primary: #ffffff;
-    --text-secondary: #c3c2b7;
-    --muted: #898781;
-    --grid: #2c2c2a;
-    --baseline: #383835;
-    --border: rgba(255,255,255,0.10);
-    --below: #3987e5;
-    --near: #898781;
-    --above: #e66767;
-    --verified: #0ca30c;
-    --warn: #fab219;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; padding: 32px 20px 64px;
-    background: var(--page); color: var(--text-primary);
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    font-size: 15px; line-height: 1.55;
-  }
-  .wrap { max-width: 1140px; margin: 0 auto; }
-  header { margin-bottom: 28px; }
-  h1 { font-size: 27px; margin: 0 0 6px; letter-spacing: -0.015em; }
-  .sub { color: var(--text-secondary); font-size: 14px; margin: 0; }
-  .sub strong { color: var(--text-primary); }
-  h2 { font-size: 17px; margin: 36px 0 12px; letter-spacing: -0.01em; }
-  .card {
-    background: var(--surface-1); border: 1px solid var(--border);
-    border-radius: 10px; padding: 18px 20px;
-  }
-  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px,1fr)); gap: 12px; margin-top: 20px; }
-  .tile { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
-  .tile .lbl { font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 5px; }
-  .tile .val { font-size: 25px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
-  .tile .note { font-size: 12px; color: var(--text-secondary); margin-top: 3px; }
-  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 22px 0 14px; }
-  .controls .grp { display: flex; gap: 6px; }
-  button.f {
-    font: inherit; font-size: 13px; padding: 6px 13px; cursor: pointer;
-    background: var(--surface-1); color: var(--text-secondary);
-    border: 1px solid var(--border); border-radius: 999px;
-  }
-  button.f[aria-pressed="true"] { background: var(--text-primary); color: var(--surface-1); border-color: var(--text-primary); }
-  .spacer { flex: 1; }
-  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--text-secondary); margin-bottom: 10px; }
-  .legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .sw { width: 13px; height: 13px; border-radius: 3px; display: inline-block; }
-  .sw.hatch { background-image: repeating-linear-gradient(45deg, var(--muted) 0 2px, transparent 2px 5px); border: 1.5px solid var(--muted); }
-  .chartbox { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px 10px; }
-  .chartbox .h { height: 420px; position: relative; }
-  table { width: 100%; border-collapse: collapse; background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-size: 13.5px; }
-  th, td { text-align: left; padding: 9px 11px; border-bottom: 1px solid var(--grid); vertical-align: top; }
-  th { font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; cursor: pointer; user-select: none; white-space: nowrap; background: var(--surface-1); }
-  th:hover { color: var(--text-primary); }
-  th .arw { opacity: .45; font-size: 10px; }
-  tbody tr:last-child td { border-bottom: none; }
-  td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .badge { display: inline-block; font-size: 10.5px; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--border); color: var(--text-secondary); margin-left: 6px; white-space: nowrap; }
-  .pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
-  .pill.v { color: #056605; background: rgba(12,163,12,.12); border: 1px solid rgba(12,163,12,.35); }
-  :root[data-theme="dark"] .pill.v { color: #4ede4e; }
-  .pill.i { color: #8a5c00; background: rgba(250,178,25,.14); border: 1px solid rgba(250,178,25,.4); }
-  :root[data-theme="dark"] .pill.i { color: #fac95c; }
-  .ppsm { font-weight: 600; }
-  .ppsm.below { color: var(--below); }
-  .ppsm.near  { color: var(--text-secondary); }
-  .ppsm.above { color: var(--above); }
-  .loc { font-weight: 550; }
-  .muni { color: var(--text-secondary); font-weight: 400; }
-  a { color: var(--below); }
-  a.mut { color: var(--muted); font-style: italic; }
-  .sz { display: block; font-size: 11.5px; color: var(--muted); }
-  .notes ul { margin: 8px 0 0; padding-left: 20px; }
-  .notes li { margin-bottom: 7px; color: var(--text-secondary); }
-  .notes strong { color: var(--text-primary); }
-  .baseline-banner { border-left: 3px solid var(--warn); background: var(--surface-1); border-radius: 0 8px 8px 0; padding: 14px 18px; border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  footer { margin-top: 40px; font-size: 12px; color: var(--muted); }
-  .thm { font: inherit; font-size: 12.5px; padding: 5px 11px; cursor: pointer; background: var(--surface-1); color: var(--text-secondary); border: 1px solid var(--border); border-radius: 999px; }
-  @media (max-width: 720px) { .hide-s { display: none; } h1 { font-size: 22px; } }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f3;color:#1a1a1a;margin:0;padding:20px;line-height:1.5;}
+  .wrap{max-width:1040px;margin:0 auto;background:#fff;border-radius:12px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,.08);}
+  .top{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #e8e6e0;padding-bottom:14px;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
+  h1{font-size:17px;font-weight:600;margin:0 0 4px;}
+  .sub{font-size:12px;color:#666;margin:0;}
+  .stamp{font-size:11px;color:#888;text-align:right;line-height:1.7;}
+  .badge-base{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:5px;background:#e6eefb;color:#0a3d70;margin-left:6px;vertical-align:2px;}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+  .card{background:#f5f5f3;border-radius:8px;padding:12px 14px;}
+  .card-lbl{font-size:11px;color:#888;margin:0 0 3px;}
+  .card-val{font-size:20px;font-weight:600;margin:0;}
+  .filters{display:flex;gap:14px;align-items:center;margin-bottom:14px;flex-wrap:wrap;font-size:12px;color:#555;}
+  .filters label{display:flex;align-items:center;gap:5px;cursor:pointer;}
+  .tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
+  .tab{font-size:12px;padding:5px 14px;border-radius:6px;border:1px solid #ccc;background:transparent;color:#666;cursor:pointer;font-family:inherit;}
+  .tab.on{background:#f0f0ee;color:#1a1a1a;font-weight:500;border-color:#aaa;}
+  .tw{overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  th{text-align:left;font-size:11px;font-weight:500;color:#888;padding:6px 8px;border-bottom:1px solid #e8e6e0;cursor:pointer;white-space:nowrap;user-select:none;}
+  th:hover{color:#333;}
+  td{padding:9px 8px;border-bottom:1px solid #f0eeea;vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:#fafaf8;}
+  .bdg{font-size:10px;font-weight:500;padding:2px 7px;border-radius:5px;white-space:nowrap;display:inline-block;margin-top:3px;}
+  .src-dot{background:#fde9c5;color:#5a3200;}
+  .src-one{background:#dff0cc;color:#1e5207;}
+  .src-lam{background:#deedfb;color:#0a3d70;}
+  .pill{font-size:9.5px;font-weight:600;padding:2px 7px;border-radius:9px;white-space:nowrap;}
+  .pill-v{background:#e3f2e3;color:#1e7a34;}
+  .pill-i{background:#fdf0d5;color:#8a5d00;}
+  .hi{color:#962020;font-weight:600;}
+  .mid{color:#124a84;font-weight:600;}
+  .lo{color:#235a0a;font-weight:600;}
+  a.lk{color:#185FA5;text-decoration:none;font-size:12px;}
+  a.lk:hover{text-decoration:underline;}
+  a.muted{color:#999;font-size:11px;text-decoration:none;}
+  a.muted:hover{text-decoration:underline;}
+  .leg{display:flex;flex-wrap:wrap;gap:16px;margin-top:10px;font-size:11px;color:#666;}
+  .leg-item{display:flex;align-items:center;gap:5px;}
+  .leg-sq{width:10px;height:10px;border-radius:2px;display:inline-block;}
+  .note{font-size:11.5px;color:#777;margin-top:16px;padding:11px 13px;border-left:2px solid #ddd;background:#fafaf8;line-height:1.75;}
+  .note strong{color:#555;}
+  .note ul{margin:6px 0 0;padding-left:18px;}
+  .note li{margin-bottom:4px;}
+  .changes{margin-top:4px;}
+  .chg-group{margin-bottom:14px;}
+  .chg-title{font-size:12px;font-weight:600;color:#444;margin:0 0 6px;}
+  .chg-list{margin:0;padding-left:18px;font-size:12px;color:#555;}
+  .chg-list li{margin-bottom:4px;}
+  .chg-empty{font-size:12px;color:#999;font-style:italic;}
+  .read{font-size:13px;color:#333;line-height:1.75;white-space:pre-wrap;}
+  .state{text-align:center;padding:3rem 1rem;color:#888;font-size:14px;}
+  .err{background:#fdeaea;color:#8a1f1f;border-radius:8px;padding:12px 16px;font-size:13px;}
+  .spinner{display:inline-block;width:16px;height:16px;border:2px solid #ddd;border-top-color:#888;border-radius:50%;animation:sp .7s linear infinite;vertical-align:-3px;margin-right:8px;}
+  @keyframes sp{to{transform:rotate(360deg);}}
+  .archive-bar{font-size:11px;color:#8a5d00;background:#fdf6e3;border-radius:6px;padding:7px 12px;margin-bottom:14px;}
+  .archive-bar a{color:#185FA5;}
+  @media(max-width:640px){.cards{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<header>
-  <h1>Pagsanjan Farmland Snapshot</h1>
-  <p class="sub">
-    Agricultural &amp; raw land, Pagsanjan (Laguna) and the ~10 km ring &nbsp;·&nbsp;
-    Retrieved <strong>27 July 2026</strong> &nbsp;·&nbsp;
-    <strong id="cVer">16</strong> verified + <strong id="cInd">1</strong> indicative =
-    <strong id="cTot">17</strong> listings
-  </p>
-</header>
+  <div id="archive-bar"></div>
 
-<div class="baseline-banner">
-  <strong>Baseline run.</strong> No prior snapshot existed, so there is no week-over-week
-  comparison this week. See <em>What changed this week</em> below.
-</div>
-
-<div class="tiles">
-  <div class="tile"><div class="lbl">Listings shown</div><div class="val" id="mCount">17</div><div class="note" id="mCountNote">16 verified · 1 indicative</div></div>
-  <div class="tile"><div class="lbl">Median ₱/sqm</div><div class="val" id="mMed">₱1,200</div><div class="note">midpoint of shown listings</div></div>
-  <div class="tile"><div class="lbl">Lowest ₱/sqm</div><div class="val" id="mLow">₱269</div><div class="note" id="mLowNote">Mojon, Pila</div></div>
-  <div class="tile"><div class="lbl">Highest ₱/sqm</div><div class="val" id="mHigh">₱3,500</div><div class="note" id="mHighNote">Pagsanjan (unspecified)</div></div>
-</div>
-
-<h2>Asking price per sqm</h2>
-<div class="controls">
-  <div class="grp">
-    <button class="f" data-f="all"  aria-pressed="true">All</button>
-    <button class="f" data-f="ver"  aria-pressed="false">Verified only</button>
-    <button class="f" data-f="ind"  aria-pressed="false">Indicative only</button>
+  <div class="top">
+    <div>
+      <h1>🌾 Farm Land Market — Pagsanjan Area, Laguna<span id="baseline-badge"></span></h1>
+      <p class="sub">Agricultural &amp; raw land · Pagsanjan + nearby towns (~10&nbsp;km) · Sources labeled by confidence tier</p>
+    </div>
+    <div class="stamp" id="stamp">Loading…</div>
   </div>
-  <div class="grp">
-    <button class="f" data-g="all"  aria-pressed="true">Everywhere</button>
-    <button class="f" data-g="core" aria-pressed="false">Pagsanjan only</button>
-    <button class="f" data-g="near" aria-pressed="false">Nearby only</button>
+
+  <div id="boot" class="state"><span class="spinner"></span>Loading latest market data…</div>
+
+  <div id="main" style="display:none;">
+
+    <div class="cards">
+      <div class="card"><p class="card-lbl">Listings shown</p><p class="card-val" id="m-count">—</p></div>
+      <div class="card"><p class="card-lbl">Median ₱/sqm</p><p class="card-val" id="m-med">—</p></div>
+      <div class="card"><p class="card-lbl">Lowest ₱/sqm</p><p class="card-val" id="m-low">—</p></div>
+      <div class="card"><p class="card-lbl">Highest ₱/sqm</p><p class="card-val" id="m-high">—</p></div>
+    </div>
+
+    <div class="filters">
+      <span style="font-weight:500;">Show:</span>
+      <label><input type="checkbox" id="f-ver" checked> Verified</label>
+      <label><input type="checkbox" id="f-ind" checked> Indicative</label>
+      <span style="margin-left:auto;font-size:11px;color:#999;" id="filter-note"></span>
+    </div>
+
+    <div class="tabs">
+      <button class="tab on" data-tab="t">Table</button>
+      <button class="tab" data-tab="c">₱/sqm chart</button>
+      <button class="tab" data-tab="w">What changed</button>
+      <button class="tab" data-tab="r">Market read</button>
+    </div>
+
+    <div id="v-t">
+      <div class="tw">
+        <table>
+          <thead><tr>
+            <th style="width:30px;">#</th>
+            <th data-sort="loc">Location</th>
+            <th data-sort="type">Type</th>
+            <th data-sort="area_sqm">Area</th>
+            <th data-sort="total_price_php">Total price</th>
+            <th data-sort="php_per_sqm">₱/sqm</th>
+            <th data-sort="confidence">Confidence</th>
+            <th style="width:52px;">Link</th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <div class="leg">
+        <div class="leg-item"><span class="leg-sq" style="background:#962020;"></span>Above median</div>
+        <div class="leg-item"><span class="leg-sq" style="background:#124a84;"></span>Near median</div>
+        <div class="leg-item"><span class="leg-sq" style="background:#235a0a;"></span>Below median</div>
+      </div>
+    </div>
+
+    <div id="v-c" style="display:none;">
+      <p style="font-size:12px;font-weight:500;color:#666;margin:0 0 10px;">Asking price per sqm · dashed line = median · outlined bars = indicative</p>
+      <div style="position:relative;width:100%;" id="chart-box">
+        <canvas id="ch" role="img" aria-label="Horizontal bar chart of asking price per square meter for each listing, compared against the median."></canvas>
+      </div>
+      <div class="leg" id="leg-c"></div>
+    </div>
+
+    <div id="v-w" style="display:none;">
+      <div class="changes" id="changes"></div>
+    </div>
+
+    <div id="v-r" style="display:none;">
+      <div class="read" id="read"></div>
+    </div>
+
+    <div class="note" id="notes"></div>
   </div>
-  <div class="spacer"></div>
-  <button class="thm" id="thmBtn">Dark mode</button>
-</div>
 
-<div class="legend">
-  <span><i class="sw" style="background:var(--below)"></i> Below median (value end)</span>
-  <span><i class="sw" style="background:var(--near)"></i> Near median (±10%)</span>
-  <span><i class="sw" style="background:var(--above)"></i> Above median (premium end)</span>
-  <span><i class="sw hatch"></i> Hatched = indicative (unconfirmed)</span>
-  <span>– – – Median</span>
-</div>
-
-<div class="chartbox"><div class="h"><canvas id="chart"></canvas></div></div>
-
-<h2>Listings <span style="font-weight:400;font-size:13px;color:var(--muted)">— click a column to sort; default is ₱/sqm ascending</span></h2>
-<table>
-  <thead><tr>
-    <th data-s="idx">#</th>
-    <th data-s="loc">Location</th>
-    <th data-s="type" class="hide-s">Type</th>
-    <th data-s="area" class="num">Area</th>
-    <th data-s="price" class="num">Total price</th>
-    <th data-s="ppsm" class="num">₱/sqm</th>
-    <th data-s="conf">Confidence</th>
-    <th>Link</th>
-  </tr></thead>
-  <tbody id="tbody"></tbody>
-</table>
-
-<h2>What changed this week</h2>
-<div class="card notes">
-  <p style="margin:0 0 6px"><strong>This is the baseline run — there is nothing to diff against yet.</strong></p>
-  <p style="margin:0;color:var(--text-secondary)">No prior snapshot file existed in <code>snapshots/</code>, so
-  NEW / PRICE CHANGE / GONE / AGING cannot be computed. The 17 rows above have been saved to
-  <code>snapshots/2026-07-27.json</code> with a stable key (source + barangay + area + price). From next week's
-  run onward this section will report:</p>
-  <ul>
-    <li><strong>NEW</strong> — listings absent last week.</li>
-    <li><strong>PRICE CHANGES</strong> — old → new total price and ₱/sqm, with % change.</li>
-    <li><strong>GONE</strong> — present last week, absent now. Likely sold or delisted; the strongest pricing
-      signal available, and the ₱/sqm at which they cleared will be noted.</li>
-    <li><strong>PERSISTING</strong> — aging inventory, carried week over week, likely overpriced.</li>
-  </ul>
-  <p style="margin:10px 0 0;color:var(--text-secondary)">Because listing dates are not published by any of the three
-  sources, GONE listings are the only reliable read on what actually sells. No days-on-market figure has been
-  estimated or invented for this run.</p>
-</div>
-
-<h2>Sourcing &amp; honesty notes</h2>
-<div class="card notes">
-  <ul>
-    <li><strong>Two confidence tiers.</strong> <span class="pill v">VERIFIED</span> means a Dot Property
-      individual post that was opened and read: area, total price and ₱/sqm all appear on the same post and the
-      arithmetic reconciles. <span class="pill i">INDICATIVE</span> means the figures came from a search-result
-      snippet only — the arithmetic reconciles, but the individual post could not be opened, so the link points to
-      a <em>search page</em>, never a fabricated post URL. Treat indicative rows as directional context, not as a
-      confirmed individual listing.</li>
-    <li><strong>Dot Property</strong> allows automated fetching and supplied all 16 verified rows. Each listing
-      here was opened individually — the summary pages alone were not trusted.</li>
-    <li><strong>Lamudi</strong> blocks bots, so it was used for market context only and contributed no rows. It did
-      independently corroborate four verified rows (the 51,328 / 29,434 / 4,767 / 10,454 sqm parcels), which is a
-      useful cross-check. It surfaced one further Pagsanjan parcel — Dingin, 13,926 sqm at ₱1,250/sqm — that quotes
-      no total price; it is not reconcilable and so was not admitted as a row.</li>
-    <li><strong>OnePropertee</strong> is robots-disallowed and was read from search snippets only. <strong>It was the
-      weak source this week.</strong> Its Pagsanjan snippets returned mutually contradictory figures for what appears
-      to be a single 2,000 sqm listing — ₱600,000, ₱2.30M and ₱6.38M, with three different ₱/sqm claims. All were
-      dropped rather than guessed at. Only one OnePropertee row survived reconciliation.</li>
-    <li><strong>No listing dates exist.</strong> None of the three sources publishes a reliable post date, and no
-      "updated X ago" stamp appeared on any row that survived verification. The table therefore cannot be sorted
-      newest-first and defaults to ₱/sqm ascending. No date or days-on-market value has been invented.</li>
-    <li><strong>Nearby-town pages are badly mis-tagged.</strong> Dot Property's Lumban and Majayjay land pages were
-      largely filled with Nuvali, Sta Rosa, Carmona, Silang and Calauan listings far outside the ~10 km scope. Every
-      nearby row above had its municipality confirmed from the post body rather than the page tag.
-      <strong>Lumban contributed no usable rows; Pakil returned zero results.</strong></li>
-    <li><strong>What was deliberately excluded:</strong> parcels with significant structures (a farm house/barn/rice
-      mill in Pila, an ancestral house in Sampaloc, a semi-finished house in Liliw); commercial-frontage pricing above
-      ~₱15,000/sqm (three Pagsanjan lots at ₱16,000–₱28,000/sqm); parcels of 9–20 ha, far above the ~5 ha comparability
-      ceiling; and rows whose stated ₱/sqm did not reconcile with area × price within 2% (including a Santa Cruz lot
-      quoting ₱3,500/sqm that computes to ₱2,863).</li>
-    <li><strong>Size caveat.</strong> Only three comparables in the whole set (Maulawin, Pag-Asa, Sumucab) fall inside
-      the owner's 0.5–1 ha range. Per-sqm price runs inversely to parcel size here, so the medians — which are pulled
-      down by 5 ha blocks — understate what a small parcel can ask. Every row carries its hectare figure beneath the
-      area, and oversized parcels are flagged.</li>
-  </ul>
-</div>
-
-<h2>Market read</h2>
-<div class="card notes">
-  <p style="margin:0 0 10px">Verified asking prices run <strong>₱269–₱3,000/sqm</strong>, median
-  <strong>₱1,200/sqm</strong>. Split by geography: <strong>Pagsanjan proper ₱500–₱3,000, median ₱975/sqm</strong>;
-  <strong>nearby ring ₱269–₱3,000, median ₱1,600/sqm</strong>. The expected Pagsanjan premium does not appear —
-  Pagsanjan's median sits ~40% <em>below</em> the ring's. That is composition, not discount: the ring sample skews to
-  road-frontage and lake-view parcels at ₱2,000–₱3,000, while Pagsanjan contributes genuine back-lot farmland (Buboy
-  ₱500, Anibong ₱547). The cheap floor is not Cavinti or Lumban as one might assume but the flat agricultural land
-  west of the river — <strong>Mojon, Pila at ₱269/sqm</strong> and <strong>Calios, Santa Cruz at ₱450/sqm</strong>.</p>
-
-  <p style="margin:0 0 10px">The set sorts into three bands: <strong>₱269–₱700 bulk agricultural</strong> (large,
-  interior, sold as farmland); <strong>₱850–₱1,500 the working middle</strong> (titled, flat, road-accessible — the
-  densest band, and where Pagsanjan inventory clusters); and <strong>₱2,000–₱3,000 amenity and frontage</strong>
-  (river/lake frontage, highway corners, or small parcels where the buyer pays for location). Critically, the
-  sub-1-ha comparables — Maulawin 0.48 ha at ₱2,000, Pag-Asa 0.47 ha at ₱1,200, Sumucab 0.84 ha at ₱2,204 — sit in the
-  <em>top</em> band. <strong>Per-sqm price runs inversely to parcel size, which is the most decision-relevant pattern
-  in this data.</strong></p>
-
-  <p style="margin:0 0 10px"><strong>Aging vs cleared inventory cannot be assessed this week</strong>, and it would be
-  dishonest to imply otherwise: there is no prior snapshot, and no source publishes listing dates. Which ₱/sqm band
-  sells fastest is genuinely unanswerable from one week of data — it needs the GONE signal, which arrives from next
-  run onward.</p>
-
-  <p style="margin:0"><strong>Recommendation for a raw 0.5–1 ha Pagsanjan parcel: ask ₱1,600–₱1,800/sqm</strong>
-  (₱8.0M–₱9.0M on 5,000 sqm; ₱16M–₱18M per hectare). The ₱975 Pagsanjan median is set by 5 ha blocks and is the wrong
-  anchor for a small parcel; the right anchor is the sub-1-ha set at ₱1,200–₱2,204. Maulawin at ₱2,000/sqm is the
-  closest true comparable — same municipality, same size class, fruit-bearing, road frontage — and it is still on the
-  market, which argues against matching it. <strong>For quickest sale specifically, price at ₱1,400/sqm</strong>
-  (₱7.0M on 5,000 sqm): just above the whole-market median, below every small-parcel comparable, and inside the
-  ₱850–₱1,500 band where most inventory competes — visibly a value listing without signalling distress. Hold the
-  ₱1,800 end if the parcel has river access or standing fruit trees; if it is interior with no frontage, start at
-  ₱1,400 and treat ₱1,100 as the floor.</p>
-</div>
-
-<footer>
-  Snapshot: <code>snapshots/2026-07-27.json</code> · Written read: <code>reports/read-2026-07-27.md</code> ·
-  Sources: Dot Property (verified), OnePropertee (indicative, search pages), Lamudi (context only).
-</footer>
-
+  <div id="fail" style="display:none;"></div>
 </div>
 
 <script>
-const MEDIAN_BAND = 0.10;
+"use strict";
 
-const ROWS = [
-  {loc:"Mojon", muni:"Pila", scope:"near", type:"Vacant agricultural lot", area:29810, price:8022000, ppsm:269, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/ads/land-for-sale-in-concepcion-laguna_4e8d0ae77a0f-84c0-e645-47a4-93c45ab4", flag:"2.98 ha"},
-  {loc:"Calios", muni:"Santa Cruz", scope:"near", type:"Agricultural lot (titled)", area:37982, price:17091900, ppsm:450, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/land-for-sale-in-patimbao-laguna_6790304", flag:"3.80 ha"},
-  {loc:"Buboy", muni:"Pagsanjan", scope:"core", type:"Vacant corner lot (raw land)", area:10454, price:5227000, ppsm:500, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/land-for-sale-in-buboy-laguna_8643936", flag:"1.05 ha"},
-  {loc:"Anibong", muni:"Pagsanjan", scope:"core", type:"Coconut / bamboo farm lot", area:13708, price:7500000, ppsm:547, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/ads/land-for-sale-in-anibong-laguna_4e39bc3bb6a3-dfff-9822-ebc6-452bd089", flag:"1.37 ha"},
-  {loc:"Barangay I", muni:"Pagsanjan", scope:"core", type:"Agricultural, fruit trees, creek", area:13000, price:9100000, ppsm:700, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/ads/land-for-sale-in-barangay-i-laguna_6db4c8509e08-bb4e-8342-ba20-618dd089", flag:"1.30 ha"},
-  {loc:"Lambac", muni:"Pagsanjan", scope:"core", type:"Raw land, flat, dev-ready", area:51286, price:43593100, ppsm:850, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/ads/land-for-sale-in-lambac-laguna_035075bb0553-51ee-e112-94fc-68b34089", flag:"5.13 ha — large"},
-  {loc:"Pinagsanjan", muni:"Pagsanjan", scope:"core", type:"Agricultural raw land", area:51328, price:56460800, ppsm:1100, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/ads/land-for-sale-in-pinagsanjan-laguna_e19c64838fdf-86f0-d442-1797-66f23089", flag:"5.13 ha — large"},
-  {loc:"Pag-Asa", muni:"Liliw", scope:"near", type:"Raw riverside land", area:4684, price:5620800, ppsm:1200, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/ads/land-for-sale-in-pag-asa-laguna_f051f9c77431-d290-da42-70fb-df69c089", flag:"0.47 ha — in range"},
-  {loc:"Bucal", muni:"Magdalena", scope:"near", type:"Farm lot, fruit trees, spring", area:18000, price:21600000, ppsm:1200, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/land-for-sale-in-salasad-laguna_4892730", flag:"1.80 ha"},
-  {loc:"Sabang", muni:"Pagsanjan", scope:"core", type:"Agricultural farm, near river", area:54000, price:81000000, ppsm:1500, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/ads/land-for-sale-in-sabang-laguna_a5ccda6ce702-8bcf-b362-315c-49b0d089", flag:"5.40 ha — large"},
-  {loc:"Maulawin", muni:"Pagsanjan", scope:"core", type:"Farm lot, coconut/rambutan/mango", area:4767, price:9534000, ppsm:2000, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/ads/land-for-sale-in-maulawin-laguna_563caadaf94c-bab1-c252-0dfa-f8fb2089", flag:"0.48 ha — in range"},
-  {loc:"Bubukal", muni:"Santa Cruz", scope:"near", type:"Raw flat land, land-value priced", area:42000, price:84000000, ppsm:2000, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/ads/land-for-sale-in-bubukal-laguna_8504ea94cd5a-ccff-dff2-1c2c-694d2089", flag:"4.20 ha — large"},
-  {loc:"Ibabang San Roque", muni:"Liliw", scope:"near", type:"Farm lot, flat, road frontage", area:14500, price:29000000, ppsm:2000, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/ads/land-for-sale-in-ibabang-san-roque-laguna_494b5014efad-800f-ec92-54a7-62a1f089", flag:"1.45 ha"},
-  {loc:"Sumucab (Caliraya)", muni:"Cavinti", scope:"near", type:"Farm lot, fruit/ornamental, lake view", area:8394, price:18500000, ppsm:2204, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/ads/land-for-sale-in-sumucab-laguna_168a46fc4e00-5f61-ed82-2c0c-48d32089", flag:"0.84 ha — in range"},
-  {loc:"Sampaloc (Sampalucan)", muni:"Pagsanjan", scope:"core", type:"Coconut plantation, 2 TCTs", area:29434, price:88302000, ppsm:3000, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/ads/land-for-sale-in-sampaloc-laguna_ab8f41fa79c0-b06e-1fc2-2eef-32532089", flag:"2.94 ha"},
-  {loc:"Cigaras", muni:"Magdalena", scope:"near", type:"Raw corner lot, flat, highway", area:24000, price:72000000, ppsm:3000, src:"Dot Property", conf:"VERIFIED", url:"https://www.dotproperty.com.ph/ads/land-for-sale-in-cigaras-laguna_23f28b9ea386-8f7e-58b2-ea73-6b632089", flag:"2.40 ha"},
-  {loc:"Barangay unspecified", muni:"Pagsanjan", scope:"core", type:"Residential lot / bare land", area:36000, price:126000000, ppsm:3500, src:"OnePropertee", conf:"INDICATIVE", url:"https://onepropertee.com/lot-for-sale-pagsanjan-laguna", flag:"3.60 ha — large"}
-];
+var DATA = null, rows = [], sortKey = "php_per_sqm", sortDir = 1, chart = null;
 
-const peso = n => "₱" + n.toLocaleString("en-US");
-const pesoShort = n => n >= 1e6 ? "₱" + (n/1e6).toFixed(n >= 1e7 ? 1 : 2) + "M" : peso(n);
+var params = new URLSearchParams(location.search);
+var archiveDate = params.get("date");
+var dataUrl = archiveDate
+  ? "archive/data-" + archiveDate + ".json"
+  : "data.json";
 
-let fConf = "all", fGeo = "all";
-let sortKey = "ppsm", sortDir = 1;
+function fmtPhp(n){ if(n==null) return "—"; return n>=1000000 ? "₱"+(n/1000000).toFixed(2)+"M" : "₱"+Math.round(n).toLocaleString(); }
+function fmtArea(n){ if(n==null) return "—"; return n>=10000 ? (n/10000).toFixed(2)+" ha" : Math.round(n).toLocaleString()+" sqm"; }
+function median(a){ if(!a.length) return 0; var s=a.slice().sort(function(x,y){return x-y;}), m=s.length>>1; return s.length%2 ? s[m] : Math.round((s[m-1]+s[m])/2); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function isVer(r){ return String(r.confidence||"").toUpperCase() === "VERIFIED"; }
+function locOf(r){ return [r.barangay, r.municipality].filter(Boolean).join(", "); }
 
-function shown() {
-  return ROWS.filter(r =>
-    (fConf === "all" || (fConf === "ver" ? r.conf === "VERIFIED" : r.conf === "INDICATIVE")) &&
-    (fGeo === "all" || r.scope === fGeo)
-  );
-}
-function median(a) {
-  if (!a.length) return 0;
-  const s = [...a].sort((x,y) => x-y), m = s.length >> 1;
-  return s.length % 2 ? s[m] : (s[m-1] + s[m]) / 2;
-}
-function band(v, med) {
-  if (v < med * (1 - MEDIAN_BAND)) return "below";
-  if (v > med * (1 + MEDIAN_BAND)) return "above";
-  return "near";
-}
-function cssVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
-
-// hatched fill for indicative bars
-function hatch(color) {
-  const c = document.createElement("canvas"); c.width = c.height = 8;
-  const x = c.getContext("2d");
-  x.fillStyle = cssVar("--surface-1"); x.fillRect(0,0,8,8);
-  x.strokeStyle = color; x.lineWidth = 2;
-  x.beginPath(); x.moveTo(0,8); x.lineTo(8,0); x.moveTo(-2,2); x.lineTo(2,-2); x.moveTo(6,10); x.lineTo(10,6); x.stroke();
-  return x.createPattern(c, "repeat");
+function srcClass(s){
+  s = String(s||"").toLowerCase();
+  if (s.indexOf("one") > -1) return "src-one";
+  if (s.indexOf("lamudi") > -1) return "src-lam";
+  return "src-dot";
 }
 
-const medLine = {
-  id: "medLine",
-  afterDatasetsDraw(ch, a, o) {
-    const y = ch.scales.y.getPixelForValue(o.value);
-    if (!isFinite(y)) return;
-    const {left, right} = ch.chartArea, c = ch.ctx;
-    c.save();
-    c.setLineDash([6,5]); c.lineWidth = 1.5; c.strokeStyle = cssVar("--text-secondary");
-    c.beginPath(); c.moveTo(left, y); c.lineTo(right, y); c.stroke();
-    c.setLineDash([]);
-    const lbl = "Median " + peso(o.value);
-    c.font = "600 11px system-ui, sans-serif";
-    const w = c.measureText(lbl).width + 10;
-    c.fillStyle = cssVar("--surface-1"); c.fillRect(right - w - 2, y - 16, w, 14);
-    c.fillStyle = cssVar("--text-secondary"); c.textAlign = "right"; c.textBaseline = "middle";
-    c.fillText(lbl, right - 7, y - 9);
-    c.restore();
-  }
-};
-Chart.register(medLine);
+function activeRows(){
+  var v = document.getElementById("f-ver").checked,
+      i = document.getElementById("f-ind").checked;
+  return rows.filter(function(r){ return isVer(r) ? v : i; });
+}
 
-let chart;
-function render() {
-  const rows = shown();
-  const vals = rows.map(r => r.ppsm);
-  const med  = median(vals);
+function psqmClass(v, med){ return v > med*1.2 ? "hi" : (v < med*0.8 ? "lo" : "mid"); }
 
-  // ---- metric tiles ----
-  const nv = rows.filter(r => r.conf === "VERIFIED").length;
-  const ni = rows.length - nv;
-  document.getElementById("mCount").textContent = rows.length;
-  document.getElementById("mCountNote").textContent = nv + " verified · " + ni + " indicative";
-  document.getElementById("mMed").textContent = rows.length ? peso(Math.round(med)) : "—";
-  if (rows.length) {
-    const lo = rows.reduce((a,b) => b.ppsm < a.ppsm ? b : a);
-    const hi = rows.reduce((a,b) => b.ppsm > a.ppsm ? b : a);
-    document.getElementById("mLow").textContent  = peso(lo.ppsm);
-    document.getElementById("mLowNote").textContent  = lo.loc + ", " + lo.muni;
-    document.getElementById("mHigh").textContent = peso(hi.ppsm);
-    document.getElementById("mHighNote").textContent = hi.loc + ", " + hi.muni;
-  } else {
-    ["mLow","mHigh"].forEach(i => document.getElementById(i).textContent = "—");
-    ["mLowNote","mHighNote"].forEach(i => document.getElementById(i).textContent = "no listings match");
-  }
+function renderMetrics(list){
+  var ps = list.map(function(r){ return r.php_per_sqm; }).filter(function(n){ return n!=null; });
+  document.getElementById("m-count").textContent = list.length;
+  document.getElementById("m-med").textContent  = ps.length ? "₱"+median(ps).toLocaleString() : "—";
+  document.getElementById("m-low").textContent  = ps.length ? "₱"+Math.min.apply(null,ps).toLocaleString() : "—";
+  document.getElementById("m-high").textContent = ps.length ? "₱"+Math.max.apply(null,ps).toLocaleString() : "—";
+  return median(ps);
+}
 
-  // ---- chart (always ascending by ppsm, independent of table sort) ----
-  const cr = [...rows].sort((a,b) => a.ppsm - b.ppsm);
-  const cols = cr.map(r => cssVar("--" + band(r.ppsm, med)));
-  const bg = cr.map((r,i) => r.conf === "VERIFIED" ? cols[i] : hatch(cols[i]));
-  const bd = cols;
+function renderTable(){
+  var list = activeRows();
+  var med = renderMetrics(list);
 
-  const data = {
-    labels: cr.map(r => r.loc + (r.muni !== "Pagsanjan" ? " · " + r.muni : "")),
-    datasets: [{
-      data: cr.map(r => r.ppsm),
-      backgroundColor: bg, borderColor: bd, borderWidth: 1.5,
-      borderRadius: 4, borderSkipped: "bottom",
-      maxBarThickness: 46
-    }]
-  };
-  const opts = {
-    responsive: true, maintainAspectRatio: false,
-    layout: { padding: { top: 22 } },
-    plugins: {
-      legend: { display: false },
-      medLine: { value: Math.round(med) },
-      tooltip: {
-        backgroundColor: cssVar("--text-primary"), titleColor: cssVar("--surface-1"),
-        bodyColor: cssVar("--surface-1"), padding: 11, displayColors: false, cornerRadius: 6,
-        callbacks: {
-          title: c => { const r = cr[c[0].dataIndex]; return r.loc + ", " + r.muni; },
-          label: c => {
-            const r = cr[c.dataIndex];
-            return [
-              peso(r.ppsm) + " / sqm",
-              r.area.toLocaleString("en-US") + " sqm · " + pesoShort(r.price),
-              r.type,
-              r.conf + " · " + r.src
-            ];
+  var nV = rows.filter(isVer).length;
+  document.getElementById("filter-note").textContent = nV + " verified · " + (rows.length - nV) + " indicative";
+
+  var sorted = list.slice().sort(function(a,b){
+    var av, bv;
+    if (sortKey === "loc") { av = locOf(a); bv = locOf(b); }
+    else { av = a[sortKey]; bv = b[sortKey]; }
+    if (av == null) av = "";
+    if (bv == null) bv = "";
+    if (typeof av === "string") return av.localeCompare(bv) * sortDir;
+    return (av - bv) * sortDir;
+  });
+
+  document.querySelectorAll("th[data-sort]").forEach(function(th){
+    var k = th.getAttribute("data-sort");
+    th.textContent = th.textContent.replace(/[ ↑↓]+$/,"");
+    if (k === sortKey) th.textContent += sortDir === 1 ? " ↑" : " ↓";
+  });
+
+  document.getElementById("tbody").innerHTML = sorted.map(function(r,i){
+    var ver = isVer(r);
+    var link = r.url
+      ? (ver
+        ? '<a class="lk" href="'+esc(r.url)+'" target="_blank" rel="noopener" title="Opens the exact listing">View ↗</a>'
+        : '<a class="muted" href="'+esc(r.url)+'" target="_blank" rel="noopener" title="Opens a search page, not an individual post">Search ↗</a>')
+      : '<span style="color:#ccc;">—</span>';
+    return '<tr>'
+      + '<td style="color:#bbb;font-size:11px;">'+(i+1)+'</td>'
+      + '<td style="font-size:12px;">'+esc(locOf(r))+'<br><span class="bdg '+srcClass(r.source)+'">'+esc(r.source||"")+'</span></td>'
+      + '<td style="font-size:11px;color:#666;">'+esc(r.type||"—")+'</td>'
+      + '<td>'+fmtArea(r.area_sqm)+'</td>'
+      + '<td>'+fmtPhp(r.total_price_php)+'</td>'
+      + '<td class="'+psqmClass(r.php_per_sqm,med)+'">₱'+(r.php_per_sqm!=null?Math.round(r.php_per_sqm).toLocaleString():"—")+'</td>'
+      + '<td><span class="pill '+(ver?"pill-v":"pill-i")+'">'+(ver?"● VERIFIED":"● INDICATIVE")+'</span></td>'
+      + '<td>'+link+'</td>'
+      + '</tr>';
+  }).join("");
+}
+
+function renderChart(){
+  var list = activeRows().slice().sort(function(a,b){ return (a.php_per_sqm||0)-(b.php_per_sqm||0); });
+  if (chart) { chart.destroy(); chart = null; }
+  if (!list.length) return;
+
+  // Horizontal bars: labels sit flat on the left, so they never collide
+  // regardless of row count. Height scales with the number of rows.
+  document.getElementById("chart-box").style.height = Math.max(220, list.length*30 + 70) + "px";
+
+  var med = median(list.map(function(r){ return r.php_per_sqm; }).filter(function(n){return n!=null;}));
+
+  chart = new Chart(document.getElementById("ch"), {
+    type: "bar",
+    data: {
+      labels: list.map(function(r){ return locOf(r); }),
+      datasets: [
+        {
+          label: "₱/sqm",
+          data: list.map(function(r){ return r.php_per_sqm||0; }),
+          backgroundColor: list.map(function(r){
+            var v = r.php_per_sqm||0;
+            var base = v > med*1.2 ? "#c0392b" : (v < med*0.8 ? "#3b6d11" : "#185FA5");
+            return isVer(r) ? base : "rgba(0,0,0,0)";
+          }),
+          borderColor: list.map(function(r){
+            var v = r.php_per_sqm||0;
+            return v > med*1.2 ? "#c0392b" : (v < med*0.8 ? "#3b6d11" : "#185FA5");
+          }),
+          borderWidth: list.map(function(r){ return isVer(r) ? 0 : 1.5; }),
+          borderRadius: 3,
+          barPercentage: 0.78
+        },
+        {
+          type: "line",
+          label: "Median",
+          data: list.map(function(){ return med; }),
+          borderColor: "#999",
+          borderWidth: 1.5,
+          borderDash: [4,3],
+          pointRadius: 0,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display:false },
+        tooltip: {
+          callbacks: {
+            title: function(c){ return list[c[0].dataIndex] ? locOf(list[c[0].dataIndex]) : ""; },
+            label: function(c){
+              if (c.datasetIndex === 1) return "Median: ₱"+Math.round(c.raw).toLocaleString()+"/sqm";
+              var r = list[c.dataIndex];
+              return "₱"+Math.round(c.raw).toLocaleString()+"/sqm  ("+(isVer(r)?"verified":"indicative")+")";
+            },
+            afterLabel: function(c){
+              if (c.datasetIndex === 1) return "";
+              var r = list[c.dataIndex];
+              return fmtArea(r.area_sqm)+" · "+fmtPhp(r.total_price_php);
+            }
           }
         }
-      }
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        title: { display: true, text: "₱ per sqm (asking)", color: cssVar("--text-secondary"), font: {size: 12} },
-        ticks: { color: cssVar("--muted"), font: {size: 11}, callback: v => "₱" + v.toLocaleString("en-US") },
-        grid: { color: cssVar("--grid"), drawTicks: false },
-        border: { color: cssVar("--baseline") }
       },
-      x: {
-        ticks: { color: cssVar("--muted"), font: {size: 10.5}, maxRotation: 60, minRotation: 45, autoSkip: false },
-        grid: { display: false },
-        border: { color: cssVar("--baseline") }
+      scales: {
+        x: {
+          ticks:{ callback:function(v){ return "₱"+Number(v).toLocaleString(); }, font:{size:10} },
+          grid:{ color:"rgba(0,0,0,.05)" },
+          title:{ display:true, text:"₱ per sqm", font:{size:10} }
+        },
+        y: { ticks:{ font:{size:10} }, grid:{ display:false } }
       }
     }
-  };
-
-  if (chart) { chart.data = data; chart.options = opts; chart.update(); }
-  else chart = new Chart(document.getElementById("chart"), { type: "bar", data, options: opts });
-
-  // ---- table ----
-  const tr = [...rows].sort((a,b) => {
-    let r;
-    switch (sortKey) {
-      case "loc":   r = (a.muni + a.loc).localeCompare(b.muni + b.loc); break;
-      case "type":  r = a.type.localeCompare(b.type); break;
-      case "area":  r = a.area - b.area; break;
-      case "price": r = a.price - b.price; break;
-      case "conf":  r = a.conf.localeCompare(b.conf); break;
-      default:      r = a.ppsm - b.ppsm;
-    }
-    return (r || a.ppsm - b.ppsm) * sortDir;
   });
 
-  document.getElementById("tbody").innerHTML = tr.map((r,i) => {
-    const b = band(r.ppsm, med);
-    const ver = r.conf === "VERIFIED";
-    return `<tr>
-      <td class="num" style="color:var(--muted)">${i+1}</td>
-      <td><span class="loc">${r.loc}</span><span class="muni">, ${r.muni}</span>${r.muni !== "Pagsanjan" ? '<span class="badge">nearby</span>' : ""}<span class="badge">${r.src}</span></td>
-      <td class="hide-s" style="color:var(--text-secondary)">${r.type}</td>
-      <td class="num">${r.area.toLocaleString("en-US")}<span class="sz">${r.flag}</span></td>
-      <td class="num">${peso(r.price)}</td>
-      <td class="num ppsm ${b}">${peso(r.ppsm)}</td>
-      <td>${ver ? '<span class="pill v">✓ VERIFIED</span>' : '<span class="pill i">~ INDICATIVE</span>'}</td>
-      <td>${ver
-        ? `<a href="${r.url}" target="_blank" rel="noopener">Open listing ↗</a>`
-        : `<a class="mut" href="${r.url}" target="_blank" rel="noopener">Search page ↗</a>`}</td>
-    </tr>`;
-  }).join("") || `<tr><td colspan="8" style="color:var(--muted);text-align:center;padding:26px">No listings match these filters.</td></tr>`;
-
-  document.querySelectorAll("th[data-s]").forEach(th => {
-    const on = th.dataset.s === sortKey;
-    th.innerHTML = th.innerHTML.replace(/\s*<span class="arw">.*?<\/span>/, "") +
-      (on ? ` <span class="arw">${sortDir > 0 ? "▲" : "▼"}</span>` : "");
-  });
+  document.getElementById("leg-c").innerHTML = [
+    {c:"#3b6d11", l:"Below median"},
+    {c:"#185FA5", l:"Near median"},
+    {c:"#c0392b", l:"Above median"},
+    {c:"transparent", b:"#8a5d00", l:"Outlined = indicative"},
+    {c:"#999", l:"Median line"}
+  ].map(function(x){
+    return '<div class="leg-item"><span class="leg-sq" style="background:'+x.c+';'+(x.b?"border:1.5px solid "+x.b+";":"")+'"></span>'+x.l+'</div>';
+  }).join("");
 }
 
-document.querySelectorAll("button.f").forEach(b => b.addEventListener("click", () => {
-  const grp = b.dataset.f ? "f" : "g";
-  if (grp === "f") fConf = b.dataset.f; else fGeo = b.dataset.g;
-  document.querySelectorAll(`button.f[data-${grp}]`).forEach(o => o.setAttribute("aria-pressed", String(o === b)));
-  render();
-}));
+function renderChanges(){
+  var c = (DATA && DATA.changes) || {};
+  var el = document.getElementById("changes");
 
-document.querySelectorAll("th[data-s]").forEach(th => th.addEventListener("click", () => {
-  const k = th.dataset.s;
-  if (k === "idx") return;
-  if (sortKey === k) sortDir *= -1; else { sortKey = k; sortDir = 1; }
-  render();
-}));
+  if (DATA && DATA.baseline) {
+    el.innerHTML = '<p class="chg-empty">This is the baseline run — no prior snapshot exists yet, so there is nothing to compare against. '
+      + 'From the next weekly run onward, this section will list new listings, price changes, listings that disappeared (likely sold or delisted), and aging inventory.</p>';
+    return;
+  }
 
-document.getElementById("thmBtn").addEventListener("click", () => {
-  const dark = document.documentElement.dataset.theme === "dark";
-  document.documentElement.dataset.theme = dark ? "light" : "dark";
-  document.getElementById("thmBtn").textContent = dark ? "Dark mode" : "Light mode";
-  render();
+  var groups = [
+    {k:"new",           t:"New this week"},
+    {k:"price_changed", t:"Price changes"},
+    {k:"gone",          t:"Gone since last week (likely sold or delisted)"},
+    {k:"persisting",    t:"Still listed (aging inventory)"}
+  ];
+
+  el.innerHTML = groups.map(function(g){
+    var items = c[g.k] || [];
+    var body = items.length
+      ? '<ul class="chg-list">' + items.map(function(x){ return "<li>"+esc(typeof x === "string" ? x : (x.note || JSON.stringify(x)))+"</li>"; }).join("") + "</ul>"
+      : '<p class="chg-empty">None.</p>';
+    return '<div class="chg-group"><p class="chg-title">'+g.t+'</p>'+body+'</div>';
+  }).join("");
+}
+
+function renderNotes(){
+  var health = (DATA && DATA.source_health) || [];
+  var dropped = (DATA && DATA.dropped_rows) || [];
+
+  var html = '<strong>How to read confidence levels.</strong> '
+    + '<span style="color:#1e7a34;font-weight:600;">● VERIFIED</span> rows are individual listing posts that were opened and read — the link goes to the exact post, and price ÷ area equals the stated ₱/sqm. '
+    + '<span style="color:#8a5d00;font-weight:600;">● INDICATIVE</span> rows come from sites that block automated access: figures were read from search-result summaries and the math checks out, but the individual post could not be opened, so the link goes to a search page. Treat indicative rows as directional market context, not confirmed listings.'
+    + '<br><br><strong>Listing dates.</strong> These sites do not reliably publish post dates, so no "days on market" figure is shown and the table sorts by ₱/sqm rather than recency. Week-over-week tracking (the "What changed" tab) is what reveals aging versus cleared inventory over time.'
+    + '<br><br><strong>Prices are asking prices</strong> from public listings — not appraisals or offers. Negotiated values typically run 5–15% lower.';
+
+  if (health.length) {
+    html += '<br><br><strong>Source notes this run:</strong><ul>'
+      + health.map(function(h){ return "<li>"+esc(h)+"</li>"; }).join("") + "</ul>";
+  }
+  if (dropped.length) {
+    html += '<br><strong>Rows dropped for failing verification: '+dropped.length+'.</strong><ul>'
+      + dropped.slice(0,8).map(function(d){
+          return "<li>"+esc(typeof d === "string" ? d : ((d.detail||d.reason||"")+(d.reason&&d.detail?" — "+d.reason:"")))+"</li>";
+        }).join("")
+      + "</ul>";
+  }
+  document.getElementById("notes").innerHTML = html;
+}
+
+function switchTab(tab){
+  ["t","c","w","r"].forEach(function(k){
+    document.getElementById("v-"+k).style.display = (k===tab) ? "block" : "none";
+  });
+  document.querySelectorAll(".tab").forEach(function(b){
+    b.classList.toggle("on", b.getAttribute("data-tab") === tab);
+  });
+  if (tab === "c") renderChart();
+}
+
+function boot(data){
+  DATA = data;
+  rows = (data.rows || []).slice();
+
+  var nV = rows.filter(isVer).length;
+  document.getElementById("stamp").innerHTML =
+    "Data retrieved: " + esc(data.run_date || "—") + "<br>" + nV + " verified · " + (rows.length-nV) + " indicative";
+
+  if (data.baseline) document.getElementById("baseline-badge").innerHTML = '<span class="badge-base">BASELINE RUN</span>';
+
+  if (archiveDate) {
+    document.getElementById("archive-bar").innerHTML =
+      '<div class="archive-bar">📁 Viewing an archived snapshot from <strong>'+esc(archiveDate)+'</strong>. <a href="./">View the latest instead →</a></div>';
+  }
+
+  document.getElementById("read").textContent = data.market_read || "No market read was recorded for this run.";
+
+  renderTable();
+  renderChanges();
+  renderNotes();
+
+  document.getElementById("boot").style.display = "none";
+  document.getElementById("main").style.display = "block";
+}
+
+function fail(msg){
+  document.getElementById("boot").style.display = "none";
+  var f = document.getElementById("fail");
+  f.style.display = "block";
+  f.innerHTML = '<div class="err"><strong>Could not load market data.</strong><br>'+esc(msg)
+    + '<br><br>If a weekly run has not completed yet, the data file may not exist. Check the repository\'s Actions tab for the most recent run.</div>';
+}
+
+// Wire up controls
+document.querySelectorAll(".tab").forEach(function(b){
+  b.addEventListener("click", function(){ switchTab(b.getAttribute("data-tab")); });
+});
+document.querySelectorAll("th[data-sort]").forEach(function(th){
+  th.addEventListener("click", function(){
+    var k = th.getAttribute("data-sort");
+    if (sortKey === k) sortDir *= -1; else { sortKey = k; sortDir = 1; }
+    renderTable();
+  });
+});
+["f-ver","f-ind"].forEach(function(id){
+  document.getElementById(id).addEventListener("change", function(){
+    renderTable();
+    if (document.getElementById("v-c").style.display !== "none") renderChart();
+  });
 });
 
-if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  document.documentElement.dataset.theme = "dark";
-  document.getElementById("thmBtn").textContent = "Light mode";
-}
-
-render();
+// Load data (cache-busted so a fresh weekly run shows up immediately)
+fetch(dataUrl + "?v=" + Date.now())
+  .then(function(r){
+    if (!r.ok) throw new Error("HTTP " + r.status + " fetching " + dataUrl);
+    return r.json();
+  })
+  .then(boot)
+  .catch(function(e){ fail(e.message); });
 </script>
 </body>
 </html>
