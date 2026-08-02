@@ -1,0 +1,258 @@
+{
+  "run_date": "2026-07-27",
+  "baseline": true,
+  "rows": [
+    {
+      "key": "dotproperty|mojon|29810|8022000",
+      "barangay": "Mojon",
+      "municipality": "Pila",
+      "type": "Vacant agricultural lot",
+      "area_sqm": 29810,
+      "total_price_php": 8022000,
+      "php_per_sqm": 269,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-concepcion-laguna_4e8d0ae77a0f-84c0-e645-47a4-93c45ab4"
+    },
+    {
+      "key": "dotproperty|calios|37982|17091900",
+      "barangay": "Calios",
+      "municipality": "Santa Cruz",
+      "type": "Agricultural lot (titled)",
+      "area_sqm": 37982,
+      "total_price_php": 17091900,
+      "php_per_sqm": 450,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/land-for-sale-in-patimbao-laguna_6790304"
+    },
+    {
+      "key": "dotproperty|buboy|10454|5227000",
+      "barangay": "Buboy",
+      "municipality": "Pagsanjan",
+      "type": "Vacant corner lot (raw land)",
+      "area_sqm": 10454,
+      "total_price_php": 5227000,
+      "php_per_sqm": 500,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/land-for-sale-in-buboy-laguna_8643936"
+    },
+    {
+      "key": "dotproperty|anibong|13708|7500000",
+      "barangay": "Anibong",
+      "municipality": "Pagsanjan",
+      "type": "Coconut/bamboo farm lot",
+      "area_sqm": 13708,
+      "total_price_php": 7500000,
+      "php_per_sqm": 547,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-anibong-laguna_4e39bc3bb6a3-dfff-9822-ebc6-452bd089"
+    },
+    {
+      "key": "dotproperty|barangay i|13000|9100000",
+      "barangay": "Barangay I",
+      "municipality": "Pagsanjan",
+      "type": "Agricultural, fruit-bearing trees, creek",
+      "area_sqm": 13000,
+      "total_price_php": 9100000,
+      "php_per_sqm": 700,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-barangay-i-laguna_6db4c8509e08-bb4e-8342-ba20-618dd089"
+    },
+    {
+      "key": "dotproperty|lambac|51286|43593100",
+      "barangay": "Lambac",
+      "municipality": "Pagsanjan",
+      "type": "Raw land, flat, ready for development",
+      "area_sqm": 51286,
+      "total_price_php": 43593100,
+      "php_per_sqm": 850,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-lambac-laguna_035075bb0553-51ee-e112-94fc-68b34089"
+    },
+    {
+      "key": "dotproperty|pinagsanjan|51328|56460800",
+      "barangay": "Pinagsanjan",
+      "municipality": "Pagsanjan",
+      "type": "Agricultural raw land",
+      "area_sqm": 51328,
+      "total_price_php": 56460800,
+      "php_per_sqm": 1100,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-pinagsanjan-laguna_e19c64838fdf-86f0-d442-1797-66f23089"
+    },
+    {
+      "key": "dotproperty|pag-asa|4684|5620800",
+      "barangay": "Pag-Asa",
+      "municipality": "Liliw",
+      "type": "Raw riverside land",
+      "area_sqm": 4684,
+      "total_price_php": 5620800,
+      "php_per_sqm": 1200,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-pag-asa-laguna_f051f9c77431-d290-da42-70fb-df69c089"
+    },
+    {
+      "key": "dotproperty|bucal|18000|21600000",
+      "barangay": "Bucal",
+      "municipality": "Magdalena",
+      "type": "Farm lot, fruit-bearing trees, spring water",
+      "area_sqm": 18000,
+      "total_price_php": 21600000,
+      "php_per_sqm": 1200,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/land-for-sale-in-salasad-laguna_4892730"
+    },
+    {
+      "key": "dotproperty|sabang|54000|81000000",
+      "barangay": "Sabang",
+      "municipality": "Pagsanjan",
+      "type": "Agricultural farm near Pagsanjan River",
+      "area_sqm": 54000,
+      "total_price_php": 81000000,
+      "php_per_sqm": 1500,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-sabang-laguna_a5ccda6ce702-8bcf-b362-315c-49b0d089"
+    },
+    {
+      "key": "dotproperty|maulawin|4767|9534000",
+      "barangay": "Maulawin",
+      "municipality": "Pagsanjan",
+      "type": "Farm lot, coconut/rambutan/santol/mango/lansones",
+      "area_sqm": 4767,
+      "total_price_php": 9534000,
+      "php_per_sqm": 2000,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-maulawin-laguna_563caadaf94c-bab1-c252-0dfa-f8fb2089"
+    },
+    {
+      "key": "dotproperty|bubukal|42000|84000000",
+      "barangay": "Bubukal",
+      "municipality": "Santa Cruz",
+      "type": "Raw flat land (listed commercial-zoned, land-value priced)",
+      "area_sqm": 42000,
+      "total_price_php": 84000000,
+      "php_per_sqm": 2000,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-bubukal-laguna_8504ea94cd5a-ccff-dff2-1c2c-694d2089"
+    },
+    {
+      "key": "dotproperty|ibabang san roque|14500|29000000",
+      "barangay": "Ibabang San Roque",
+      "municipality": "Liliw",
+      "type": "Farm lot, flat terrain, road frontage",
+      "area_sqm": 14500,
+      "total_price_php": 29000000,
+      "php_per_sqm": 2000,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-ibabang-san-roque-laguna_494b5014efad-800f-ec92-54a7-62a1f089"
+    },
+    {
+      "key": "dotproperty|sumucab (caliraya)|8394|18500000",
+      "barangay": "Sumucab (Caliraya)",
+      "municipality": "Cavinti",
+      "type": "Farm lot, ornamental/fruit-bearing plants, lake view",
+      "area_sqm": 8394,
+      "total_price_php": 18500000,
+      "php_per_sqm": 2204,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-sumucab-laguna_168a46fc4e00-5f61-ed82-2c0c-48d32089"
+    },
+    {
+      "key": "dotproperty|sampaloc (sampalucan)|29434|88302000",
+      "barangay": "Sampaloc (Sampalucan)",
+      "municipality": "Pagsanjan",
+      "type": "Coconut plantation (2 TCTs), banana/mango",
+      "area_sqm": 29434,
+      "total_price_php": 88302000,
+      "php_per_sqm": 3000,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-sampaloc-laguna_ab8f41fa79c0-b06e-1fc2-2eef-32532089"
+    },
+    {
+      "key": "dotproperty|cigaras|24000|72000000",
+      "barangay": "Cigaras",
+      "municipality": "Magdalena",
+      "type": "Raw/agricultural corner lot, flat, highway frontage",
+      "area_sqm": 24000,
+      "total_price_php": 72000000,
+      "php_per_sqm": 3000,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-cigaras-laguna_23f28b9ea386-8f7e-58b2-ea73-6b632089"
+    },
+    {
+      "key": "onepropertee|barangay unspecified|36000|126000000",
+      "barangay": "Barangay unspecified",
+      "municipality": "Pagsanjan",
+      "type": "Residential lot / bare land",
+      "area_sqm": 36000,
+      "total_price_php": 126000000,
+      "php_per_sqm": 3500,
+      "source": "OnePropertee",
+      "confidence": "INDICATIVE",
+      "url": "https://onepropertee.com/lot-for-sale-pagsanjan-laguna"
+    }
+  ],
+  "changes": {
+    "new": [],
+    "price_changed": [],
+    "gone": [],
+    "persisting": []
+  },
+  "source_health": [
+    "Dot Property: primary source this run — individual posts opened and read; 16 verified rows.",
+    "Lamudi: bot-blocked, used for corroboration only. Independently corroborated 4 Dot Property rows; no rows sourced from it.",
+    "OnePropertee: robots-disallowed, snippets only. Most Pagsanjan snippets returned mutually contradictory price/area combinations and were dropped; only 1 indicative row survived.",
+    "Dot Property's Lumban page returned no usable in-scope rows — it was populated almost entirely with out-of-scope Nuvali/Sta. Rosa/Carmona/Silang listings.",
+    "Dot Property's Pakil page returned 0 results."
+  ],
+  "dropped_rows": [
+    {
+      "detail": "OnePropertee Pagsanjan 2,000 sqm PHP 6.38M stated 8,500/sqm; OnePropertee Pagsanjan 2,000 sqm PHP 600,000 stated 2,000/sqm; Dot Property Patimbao, Santa Cruz 4,716 sqm PHP 13.5M stated 3,500/sqm (computes 2,863)",
+      "reason": "price/sqm did not reconcile with area x total (>2% off)"
+    },
+    {
+      "detail": "OnePropertee Pagsanjan 2,000 sqm residential farm appeared at three different prices; OnePropertee Pagsanjan 100 sqm appeared at PHP 330,000 and PHP 300,000",
+      "reason": "conflicting snippet variants of the same nominal listing - ambiguous"
+    },
+    {
+      "detail": "Pila Bagong Pook 15,000 sqm - existing farm structure; Pila Bulilan Sur 31,000 sqm - farm house, barn, rice mill; Pagsanjan Sampaloc 2,507 sqm - ancestral house (+1 more)",
+      "reason": "significant structure present"
+    },
+    {
+      "detail": "Pagsanjan Dingin 855 sqm at 28,000/sqm; Pagsanjan Barangay II 583 sqm at 16,000/sqm; Pagsanjan Pinagsanjan 13,130 sqm at 25,000/sqm",
+      "reason": "commercial frontage pricing above ~15,000/sqm"
+    },
+    {
+      "detail": "Magdalena Ilayang Atingay 102,883 sqm; Magdalena Alipit 110,990 sqm; Santa Cruz Oogong 103,027 sqm (+3 more)",
+      "reason": "parcel far above ~5 ha scope ceiling"
+    },
+    {
+      "detail": "Nuvali / Sta Rosa / Carmona / Silang / Binan / Calauan / San Pablo listings appearing under Lumban and Majayjay tags",
+      "reason": "outside ~10 km scope (mis-tagged on nearby-town pages)"
+    },
+    {
+      "detail": "Liliw Pag-Asa farm lot listed 10,500 sqm but described as 10,600 sqm",
+      "reason": "internal area conflict between listing card and description"
+    },
+    {
+      "detail": "OnePropertee Lumban 136 sqm; OnePropertee Pagsanjan 100 sqm",
+      "reason": "too small / not farmland"
+    }
+  ],
+  "market_read": "Baseline run: 16 verified and 1 indicative listing across Pagsanjan and the ~10 km ring. Verified asking prices span PHP 269–3000/sqm with a median of PHP 1200/sqm. The expected Pagsanjan-proper premium is not present — Pagsanjan verified median is PHP 975/sqm against PHP 1600/sqm for the nearby ring. That inversion is composition rather than discount: price per sqm runs inversely to parcel size. The three sub-1-hectare comparables ask PHP 1,200–2,204/sqm, while the ~5 ha blocks that set the median ask PHP 850–1,100/sqm. For a raw 0.5–1 ha Pagsanjan parcel, that points to an asking price of PHP 1,600–1,800/sqm, with PHP 1,400/sqm as the level to price at for the quickest sale. Aging versus cleared inventory is not answerable yet: no source publishes listing dates and there is no prior snapshot to diff against. That signal begins once listings start disappearing between runs."
+}
