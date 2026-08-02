@@ -2,12 +2,13 @@ name: Weekly Pagsanjan Farmland Snapshot
 
 on:
   schedule:
-    - cron: '0 23 * * 0'   # Sundays 23:00 UTC = Mondays 7am PH time (UTC+8)
-  workflow_dispatch: {}     # lets you trigger a run manually from the Actions tab
+    - cron: '0 23 * * 0'    # Sundays 23:00 UTC = Mondays 7am Philippine time
+  workflow_dispatch: {}
 
 jobs:
   snapshot:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: write
     steps:
@@ -16,25 +17,68 @@ jobs:
       - name: Install Claude Code
         run: npm install -g @anthropic-ai/claude-code
 
+      - name: Prepare directories and guard the template
+        run: |
+          mkdir -p docs/archive reports
+          if [ ! -f docs/index.html ]; then
+            echo "ERROR: docs/index.html is missing. The dashboard template must be committed before this workflow can run."
+            exit 1
+          fi
+          # Fingerprint the template so we can prove the agent didn't touch it.
+          sha256sum docs/index.html > /tmp/template.sha
+
       - name: Run weekly snapshot
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: claude-sonnet-4-6
         run: |
-          claude -p "Run the weekly Pagsanjan farmland snapshot per CLAUDE.md. \
-          Write the snapshot JSON to snapshots/, the written market read to reports/, \
-          and the dashboard HTML to BOTH docs/index.html (overwrite — this is the \
-          stable shareable link) and docs/archive/dashboard-<today's date>.html \
-          (dated copy). Then stop — do not commit." \
-          --output-format json \
-          --allowedTools "Read" "Write" "WebSearch" "WebFetch" \
-          --max-turns 40 \
-          2>&1 | tee run-log.json
+          set -o pipefail
+          claude -p "Run the weekly Pagsanjan farmland snapshot exactly as specified in CLAUDE.md. Write only docs/data.json, docs/archive/data-DATE.json, and reports/read-DATE.md where DATE is today's date in YYYY-MM-DD form. Do not modify docs/index.html. Do not commit anything." \
+            --output-format json \
+            --allowedTools "Read" "Write" "WebSearch" "WebFetch" \
+            --max-turns 40 \
+            2>&1 | tee run-log.json
+
+      - name: Verify output
+        if: always()
+        run: |
+          echo "--- template integrity ---"
+          sha256sum -c /tmp/template.sha && echo "OK: docs/index.html unchanged" \
+            || echo "WARNING: docs/index.html was modified — it should not have been"
+
+          echo "--- data.json validity ---"
+          if [ -f docs/data.json ]; then
+            python3 -c "import json,sys; d=json.load(open('docs/data.json')); print('OK: valid JSON,', len(d.get('rows',[])), 'rows, run_date', d.get('run_date'))" \
+              || { echo "ERROR: docs/data.json is not valid JSON"; exit 1; }
+          else
+            echo "ERROR: docs/data.json was not created"; exit 1
+          fi
+
+          echo "--- files written ---"
+          ls -la docs docs/archive reports
+
+      - name: Show run summary
+        if: always()
+        run: |
+          python3 -c "
+          import json
+          try:
+              d = json.load(open('run-log.json'))
+              print('subtype     :', d.get('subtype'))
+              print('is_error    :', d.get('is_error'))
+              print('num_turns   :', d.get('num_turns'))
+              print('cost_usd    :', d.get('total_cost_usd'))
+              for m, u in (d.get('modelUsage') or {}).items():
+                  print(f'  {m}: \${u.get(\"costUSD\", 0):.4f}')
+          except Exception as e:
+              print('Could not parse run-log.json:', e)
+          " || tail -c 3000 run-log.json
 
       - name: Commit results
         run: |
           git config user.name "pagsanjan-land-agent"
           git config user.email "actions@github.com"
-          git add snapshots/ reports/ docs/
+          git add docs/data.json docs/archive reports
           git diff --cached --quiet || git commit -m "Weekly snapshot $(date +%Y-%m-%d)"
           git push
 
