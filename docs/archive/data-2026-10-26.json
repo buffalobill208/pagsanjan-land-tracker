@@ -1,0 +1,169 @@
+{
+  "run_date": "2026-10-26",
+  "baseline": false,
+  "rows": [
+    {
+      "key": "dotproperty|mojon|29810|8022000",
+      "barangay": "Mojon",
+      "municipality": "Pila",
+      "type": "Vacant agricultural lot",
+      "area_sqm": 29810,
+      "total_price_php": 8022000,
+      "php_per_sqm": 269,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-concepcion-laguna_4e8d0ae77a0f-84c0-e645-47a4-93c45ab4"
+    },
+    {
+      "key": "dotproperty|lambac|51286|43593100",
+      "barangay": "Lambac",
+      "municipality": "Pagsanjan",
+      "type": "Raw land, flat, ready for development",
+      "area_sqm": 51286,
+      "total_price_php": 43593100,
+      "php_per_sqm": 850,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-lambac-laguna_035075bb0553-51ee-e112-94fc-68b34089"
+    },
+    {
+      "key": "dotproperty|pinagsanjan|51328|56460800",
+      "barangay": "Pinagsanjan",
+      "municipality": "Pagsanjan",
+      "type": "Agricultural raw land",
+      "area_sqm": 51328,
+      "total_price_php": 56460800,
+      "php_per_sqm": 1100,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-pinagsanjan-laguna_e19c64838fdf-86f0-d442-1797-66f23089"
+    },
+    {
+      "key": "dotproperty|ilayang atingay|14182|21273000",
+      "barangay": "Ilayang Atingay",
+      "municipality": "Magdalena",
+      "type": "Farm lot, elevated ridge, river access",
+      "area_sqm": 14182,
+      "total_price_php": 21273000,
+      "php_per_sqm": 1500,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-tanawan-laguna_a6f6636eeb32-223e-1e62-a501-07689f89"
+    },
+    {
+      "key": "dotproperty|sabang|54000|81000000",
+      "barangay": "Sabang",
+      "municipality": "Pagsanjan",
+      "type": "Agricultural farm near Pagsanjan River",
+      "area_sqm": 54000,
+      "total_price_php": 81000000,
+      "php_per_sqm": 1500,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-sabang-laguna_a5ccda6ce702-8bcf-b362-315c-49b0d089"
+    },
+    {
+      "key": "dotproperty|maulawin|4767|9534000",
+      "barangay": "Maulawin",
+      "municipality": "Pagsanjan",
+      "type": "Farm lot, coconut/rambutan/santol/mango/lansones",
+      "area_sqm": 4767,
+      "total_price_php": 9534000,
+      "php_per_sqm": 2000,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-maulawin-laguna_563caadaf94c-bab1-c252-0dfa-f8fb2089"
+    },
+    {
+      "key": "dotproperty|bubukal|42000|84000000",
+      "barangay": "Bubukal",
+      "municipality": "Santa Cruz",
+      "type": "Flat raw land, 250 m from national road",
+      "area_sqm": 42000,
+      "total_price_php": 84000000,
+      "php_per_sqm": 2000,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-bubukal-laguna_8504ea94cd5a-ccff-dff2-1c2c-694d2089"
+    },
+    {
+      "key": "dotproperty|ibabang san roque|14500|29000000",
+      "barangay": "Ibabang San Roque",
+      "municipality": "Liliw",
+      "type": "Farm lot, flat terrain, road frontage",
+      "area_sqm": 14500,
+      "total_price_php": 29000000,
+      "php_per_sqm": 2000,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-ibabang-san-roque-laguna_494b5014efad-800f-ec92-54a7-62a1f089"
+    },
+    {
+      "key": "dotproperty|kanluran talaongan (caliraya)|8394|18500000",
+      "barangay": "Kanluran Talaongan (Caliraya)",
+      "municipality": "Cavinti",
+      "type": "Farm lot, ornamental/fruit-bearing plants, lake view",
+      "area_sqm": 8394,
+      "total_price_php": 18500000,
+      "php_per_sqm": 2204,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-kanluran-talaongan-laguna_34823e5831f7-c5a1-ab52-369b-1f2ed089"
+    },
+    {
+      "key": "dotproperty|sisilmin (caliraya)|8394|23503200",
+      "barangay": "Sisilmin (Caliraya)",
+      "municipality": "Cavinti",
+      "type": "Agricultural bare land, fruit-bearing plants, lake view",
+      "area_sqm": 8394,
+      "total_price_php": 23503200,
+      "php_per_sqm": 2800,
+      "source": "Dot Property",
+      "confidence": "VERIFIED",
+      "url": "https://www.dotproperty.com.ph/ads/land-for-sale-in-silangan-talaongan-laguna_4aaee9ff3ae7-3121-d112-188d-88358089"
+    }
+  ],
+  "changes": {
+    "new": [],
+    "price_changed": [],
+    "gone": [
+      "dotproperty|bulilan norte|6447|12894000 — Pila Bulilan Norte PHP 2,000/sqm; individual post returned 404 this week; likely delisted or sold; if sold, PHP 2,000/sqm is the first probable market-clearing price in this dataset"
+    ],
+    "persisting": [
+      "dotproperty|mojon|29810|8022000 — Pila Mojon PHP 269/sqm; price unchanged, fourteenth consecutive week",
+      "dotproperty|lambac|51286|43593100 — Pagsanjan Lambac PHP 850/sqm; price unchanged, fourteenth consecutive week",
+      "dotproperty|pinagsanjan|51328|56460800 — Pagsanjan Pinagsanjan PHP 1,100/sqm; price unchanged, fourteenth consecutive week",
+      "dotproperty|ilayang atingay|14182|21273000 — Magdalena Ilayang Atingay PHP 1,500/sqm; price unchanged, fourteenth consecutive week",
+      "dotproperty|sabang|54000|81000000 — Pagsanjan Sabang PHP 1,500/sqm; price unchanged, fourteenth consecutive week",
+      "dotproperty|maulawin|4767|9534000 — Pagsanjan Maulawin PHP 2,000/sqm; price unchanged, fourteenth consecutive week",
+      "dotproperty|bubukal|42000|84000000 — Santa Cruz Bubukal PHP 2,000/sqm; price unchanged, fourteenth consecutive week",
+      "dotproperty|ibabang san roque|14500|29000000 — Liliw Ibabang San Roque PHP 2,000/sqm; price unchanged, fourteenth consecutive week",
+      "dotproperty|kanluran talaongan (caliraya)|8394|18500000 — Cavinti Kanluran Talaongan PHP 2,204/sqm; price unchanged, fourteenth consecutive week",
+      "dotproperty|sisilmin (caliraya)|8394|23503200 — Cavinti Sisilmin PHP 2,800/sqm; price unchanged, fourteenth consecutive week"
+    ]
+  },
+  "source_health": [
+    "Dot Property: primary source, 10 verified rows (0 new, 10 persisting, 1 gone). Pagsanjan page (7 results): Sabang, Lambac, Pinagsanjan, Maulawin confirmed persisting; Barangay I excluded (listing title discloses 3 vacation houses); San Isidro excluded (card now shows 90,000 sqm — area discrepancy vs prior 85,000 sqm, but exceeds 5 ha either way); Barangay II excluded (commercial zone). Pila page (10 results): Mojon/Concepcion confirmed; Bulilan Norte 6,447 sqm returned 404 (gone); Bulilan Sur 7,996 sqm excluded (resort with significant structures: AC rooms, pool, pavilion, cottages); Bulilan Sur 31,000 sqm excluded (structures confirmed prior runs); remaining Bulilan Sur and Pansol entries excluded (exceeds 5 ha or out of scope). Cavinti page (11 results): Kanluran Talaongan and Sisilmin confirmed persisting; Sumucab 8,394 sqm deduplicated; sub-700 sqm Sierra Lakes and Hamptons lots excluded (subdivision). Santa Cruz page: Bubukal confirmed; all others excluded (commercial frontage or exceeds 5 ha). Magdalena page: Poblacion 850/900 sqm dropped again (area conflict, below minimum). Majayjay page: Villa Nogales entries confirmed mis-tagged (Nuvali/Canlubang/Carmelray — out of scope); Tanawan 14,182 sqm confirmed as Magdalena Ilayang Atingay via individual post. Liliw page: Ibabang San Roque confirmed; Pag-Asa 10,500/10,600 sqm dropped again (area conflict); Pag-Asa 111,260 sqm excluded (exceeds 5 ha); Bayate excluded (semi-finished house). Lumban page: Balubad 27,000 sqm excluded (existing pavilion and poultry operation — not raw land); all other Lumban entries mis-tagged (Carmona, Calamba, Santa Rosa, Eton City — out of scope). Pakil: 0 results, consistent with all prior runs.",
+    "Lamudi: bot-blocked; no snippets reviewed this run.",
+    "OnePropertee: blocks automated access; web searches returned no OnePropertee snippets this run; no indicative rows added."
+  ],
+  "dropped_rows": [
+    {
+      "detail": "Liliw Pag-Asa 10,500/10,600 sqm PHP 15,000,000",
+      "reason": "area conflict re-confirmed: listing card states 10,500 sqm, description states 10,600 sqm; php_per_sqm cannot be confirmed; dropped again"
+    },
+    {
+      "detail": "Magdalena Poblacion 850/900 sqm PHP 2,000,000",
+      "reason": "area conflict re-confirmed: header states 850 sqm, description states 900 sqm; also below 5,000 sqm preferred minimum; dropped again"
+    },
+    {
+      "detail": "Pila Bulilan Sur 7,996 sqm PHP 35,982,000 (new this run)",
+      "reason": "significant resort structures present: four air-conditioned rooms, family room, couple room, pavilion, pool, kiddie pool, half basketball court, grill area, cottages — not raw agricultural land"
+    },
+    {
+      "detail": "Lumban Balubad 27,000 sqm PHP 44,000,000 (new this run)",
+      "reason": "existing structures: pavilion and poultry operation facilities; listing markets property as a developed farm estate, not raw land"
+    }
+  ],
+  "market_read": "Week 14 snapshot: 10 verified rows (0 new, 10 persisting, 1 gone), 0 indicative. The Pila Bulilan Norte listing (6,447 sqm, PHP 2,000/sqm) returned 404 this week — the first confirmed deletion in 14 weeks; if it sold, PHP 2,000/sqm is the first probable clearing price in this dataset and the strongest signal yet for ring-municipality pricing. Verified range PHP 269–2,800/sqm; dataset median PHP 1,750/sqm (midpoint of 5th and 6th rows sorted by price per sqm); Pagsanjan-core holds 4 rows (PHP 850–2,000/sqm) with a core median of PHP 1,300/sqm. Ring municipalities cluster PHP 2,000–2,800/sqm except for the distressed Pila Mojon outlier at PHP 269/sqm. For a raw 0.5–1 ha Pagsanjan parcel, recommended asking range PHP 1,400–1,800/sqm; fastest-sale price PHP 900–1,000/sqm. If the Bulilan Norte deletion is confirmed as a sale, the realistic ceiling for Pagsanjan-core at quick-sale pricing is likely PHP 1,500–2,000/sqm."
+}
