@@ -1,5 +1,5 @@
 {
-  "run_date": "2026-10-26",
+  "run_date": "2026-11-02",
   "baseline": false,
   "rows": [
     {
@@ -126,28 +126,42 @@
   "changes": {
     "new": [],
     "price_changed": [],
-    "gone": [
-      "dotproperty|bulilan norte|6447|12894000 — Pila Bulilan Norte PHP 2,000/sqm; individual post returned 404 this week; likely delisted or sold; if sold, PHP 2,000/sqm is the first probable market-clearing price in this dataset"
-    ],
+    "gone": [],
     "persisting": [
-      "dotproperty|mojon|29810|8022000 — Pila Mojon PHP 269/sqm; price unchanged, fourteenth consecutive week",
-      "dotproperty|lambac|51286|43593100 — Pagsanjan Lambac PHP 850/sqm; price unchanged, fourteenth consecutive week",
-      "dotproperty|pinagsanjan|51328|56460800 — Pagsanjan Pinagsanjan PHP 1,100/sqm; price unchanged, fourteenth consecutive week",
-      "dotproperty|ilayang atingay|14182|21273000 — Magdalena Ilayang Atingay PHP 1,500/sqm; price unchanged, fourteenth consecutive week",
-      "dotproperty|sabang|54000|81000000 — Pagsanjan Sabang PHP 1,500/sqm; price unchanged, fourteenth consecutive week",
-      "dotproperty|maulawin|4767|9534000 — Pagsanjan Maulawin PHP 2,000/sqm; price unchanged, fourteenth consecutive week",
-      "dotproperty|bubukal|42000|84000000 — Santa Cruz Bubukal PHP 2,000/sqm; price unchanged, fourteenth consecutive week",
-      "dotproperty|ibabang san roque|14500|29000000 — Liliw Ibabang San Roque PHP 2,000/sqm; price unchanged, fourteenth consecutive week",
-      "dotproperty|kanluran talaongan (caliraya)|8394|18500000 — Cavinti Kanluran Talaongan PHP 2,204/sqm; price unchanged, fourteenth consecutive week",
-      "dotproperty|sisilmin (caliraya)|8394|23503200 — Cavinti Sisilmin PHP 2,800/sqm; price unchanged, fourteenth consecutive week"
+      "dotproperty|mojon|29810|8022000 — Pila Mojon PHP 269/sqm; price unchanged, fifteenth consecutive week",
+      "dotproperty|lambac|51286|43593100 — Pagsanjan Lambac PHP 850/sqm; price unchanged, fifteenth consecutive week",
+      "dotproperty|pinagsanjan|51328|56460800 — Pagsanjan Pinagsanjan PHP 1,100/sqm; price unchanged, fifteenth consecutive week",
+      "dotproperty|ilayang atingay|14182|21273000 — Magdalena Ilayang Atingay PHP 1,500/sqm; price unchanged, fifteenth consecutive week",
+      "dotproperty|sabang|54000|81000000 — Pagsanjan Sabang PHP 1,500/sqm; price unchanged, fifteenth consecutive week",
+      "dotproperty|maulawin|4767|9534000 — Pagsanjan Maulawin PHP 2,000/sqm; price unchanged, fifteenth consecutive week",
+      "dotproperty|bubukal|42000|84000000 — Santa Cruz Bubukal PHP 2,000/sqm; price unchanged, fifteenth consecutive week",
+      "dotproperty|ibabang san roque|14500|29000000 — Liliw Ibabang San Roque PHP 2,000/sqm; price unchanged, fifteenth consecutive week",
+      "dotproperty|kanluran talaongan (caliraya)|8394|18500000 — Cavinti Kanluran Talaongan PHP 2,204/sqm; price unchanged, fifteenth consecutive week",
+      "dotproperty|sisilmin (caliraya)|8394|23503200 — Cavinti Sisilmin PHP 2,800/sqm; price unchanged, fifteenth consecutive week"
     ]
   },
   "source_health": [
-    "Dot Property: primary source, 10 verified rows (0 new, 10 persisting, 1 gone). Pagsanjan page (7 results): Sabang, Lambac, Pinagsanjan, Maulawin confirmed persisting; Barangay I excluded (listing title discloses 3 vacation houses); San Isidro excluded (card now shows 90,000 sqm — area discrepancy vs prior 85,000 sqm, but exceeds 5 ha either way); Barangay II excluded (commercial zone). Pila page (10 results): Mojon/Concepcion confirmed; Bulilan Norte 6,447 sqm returned 404 (gone); Bulilan Sur 7,996 sqm excluded (resort with significant structures: AC rooms, pool, pavilion, cottages); Bulilan Sur 31,000 sqm excluded (structures confirmed prior runs); remaining Bulilan Sur and Pansol entries excluded (exceeds 5 ha or out of scope). Cavinti page (11 results): Kanluran Talaongan and Sisilmin confirmed persisting; Sumucab 8,394 sqm deduplicated; sub-700 sqm Sierra Lakes and Hamptons lots excluded (subdivision). Santa Cruz page: Bubukal confirmed; all others excluded (commercial frontage or exceeds 5 ha). Magdalena page: Poblacion 850/900 sqm dropped again (area conflict, below minimum). Majayjay page: Villa Nogales entries confirmed mis-tagged (Nuvali/Canlubang/Carmelray — out of scope); Tanawan 14,182 sqm confirmed as Magdalena Ilayang Atingay via individual post. Liliw page: Ibabang San Roque confirmed; Pag-Asa 10,500/10,600 sqm dropped again (area conflict); Pag-Asa 111,260 sqm excluded (exceeds 5 ha); Bayate excluded (semi-finished house). Lumban page: Balubad 27,000 sqm excluded (existing pavilion and poultry operation — not raw land); all other Lumban entries mis-tagged (Carmona, Calamba, Santa Rosa, Eton City — out of scope). Pakil: 0 results, consistent with all prior runs.",
-    "Lamudi: bot-blocked; no snippets reviewed this run.",
-    "OnePropertee: blocks automated access; web searches returned no OnePropertee snippets this run; no indicative rows added."
+    "Dot Property: primary source, 10 verified rows (0 new, 10 persisting, 0 gone). Pagsanjan page (7 results): Sabang, Lambac, Pinagsanjan, Maulawin confirmed persisting; Barangay I 7,700 sqm excluded (3 vacation houses); San Isidro 90,000 sqm excluded (exceeds 5 ha); Barangay II 583 sqm excluded (commercial frontage). A separate Barangay I listing (1.3 ha, PHP 9,100,000) appeared in web search snippets but returned 404 on individual post fetch — cannot verify, dropped. Pila page (10 results): Mojon/Concepcion confirmed persisting via individual post; Bulilan Sur 97,000 sqm excluded (>5 ha); Bulilan Sur 7,996 sqm excluded (resort structures: confirmed prior runs); Bulilan Sur 31,000 sqm excluded (>5 ha); Pansol 70,090 sqm excluded (>5 ha); Bulilan Sur 90,000 sqm excluded (>5 ha); Phuket Mansions entries excluded (Silang, Cavite — out of scope); Bulilan Sur 24,804 sqm excluded (structures confirmed: mansion + commercial). Cavinti page (11 results): Kanluran Talaongan and Sisilmin confirmed persisting via individual post; Sumucab 8,394 sqm at PHP 18,500,000 deduplicated against Kanluran Talaongan (same property, different agent URL); Sisilmin new listing PHP 2,500,000 dropped (area/price mismatch: stated 2K/sqm does not reconcile with PHP 2,500,000 over 8,394 sqm); Sierra Lakes and Hamptons sub-700 sqm excluded (subdivision). Santa Cruz page (9 results): Bubukal confirmed; others excluded (commercial frontage, <5,000 sqm, or >5 ha). Magdalena page (1 result): Poblacion 850/900 sqm dropped again (area conflict — header 850 sqm, description 900 sqm; below 5,000 sqm minimum). Liliw page (4 results): Ibabang San Roque confirmed; Pag-Asa 10,500/10,600 sqm dropped again (area conflict); Bayate 1,000 sqm excluded (semi-finished house); Pag-Asa 111,260 sqm excluded (>5 ha). Lumban page (22 results): Caliraya 8,394 sqm at PHP 18,500,000 (explicitly reduced from PHP 23.5M per listing) deduplicated against Kanluran Talaongan entry — same physical parcel, different agent; Balubad 27,000 sqm excluded (structures: pavilion and poultry); Wawa excluded (farm house with structures); all Lewin entries confirmed mis-tagged (Carmona, Calamba, Santa Rosa, San Pedro, Nuvali, Filinvest, Southwoods — out of scope). Majayjay page (10 results): all Villa Nogales entries confirmed mis-tagged (Nuvali/Canlubang/Carmelray/Rockwell South/Ayala Greenfield — out of scope); Tanawan 14,182 sqm confirmed as Magdalena Ilayang Atingay. Pakil: 0 results, consistent with all prior runs. Buboy (Pagsanjan): dedicated barangay page returned 0 results; a snippet-referenced listing could not be resolved to a live individual URL.",
+    "Lamudi: bot-blocked (403 Forbidden); web search snippets confirm Sabang PHP 81M and Maulawin PHP 9.53M are cross-listed (duplicates of verified DotProperty entries); no new INDICATIVE rows.",
+    "OnePropertee: blocks automated access (pages returned empty content); no INDICATIVE rows added."
   ],
   "dropped_rows": [
+    {
+      "detail": "Pagsanjan Barangay I 1.3 ha PHP 9,100,000 (new candidate this run)",
+      "reason": "appeared in web search snippet but individual Dot Property post returned 404; cannot verify area, price, or absence of structures; dropped"
+    },
+    {
+      "detail": "Cavinti Sisilmin 8,394 sqm PHP 2,500,000 (new listing this run)",
+      "reason": "stated price per sqm (PHP 2,000) does not reconcile with PHP 2,500,000 over 8,394 sqm (PHP 298/sqm); likely a project-total area misquoted for a smaller individual lot; area/price attribution unresolvable from snippet; dropped"
+    },
+    {
+      "detail": "Cavinti Sumucab 8,394 sqm PHP 18,500,000",
+      "reason": "deduplicated against existing dotproperty|kanluran talaongan (caliraya)|8394|18500000 — individual post confirms same physical parcel in Cavinti at identical price; different agent listing URL only"
+    },
+    {
+      "detail": "Lumban Caliraya 8,394 sqm PHP 18,500,000 (down from PHP 23,500,000)",
+      "reason": "deduplicated against existing dotproperty|kanluran talaongan (caliraya)|8394|18500000 — individual post confirms same parcel description (114 m frontage, bamboo fence, ornamental plants, lake view, glamping area); Lumban municipality tag is a mis-classification; VERIFIED Cavinti entry retained"
+    },
     {
       "detail": "Liliw Pag-Asa 10,500/10,600 sqm PHP 15,000,000",
       "reason": "area conflict re-confirmed: listing card states 10,500 sqm, description states 10,600 sqm; php_per_sqm cannot be confirmed; dropped again"
@@ -155,15 +169,7 @@
     {
       "detail": "Magdalena Poblacion 850/900 sqm PHP 2,000,000",
       "reason": "area conflict re-confirmed: header states 850 sqm, description states 900 sqm; also below 5,000 sqm preferred minimum; dropped again"
-    },
-    {
-      "detail": "Pila Bulilan Sur 7,996 sqm PHP 35,982,000 (new this run)",
-      "reason": "significant resort structures present: four air-conditioned rooms, family room, couple room, pavilion, pool, kiddie pool, half basketball court, grill area, cottages — not raw agricultural land"
-    },
-    {
-      "detail": "Lumban Balubad 27,000 sqm PHP 44,000,000 (new this run)",
-      "reason": "existing structures: pavilion and poultry operation facilities; listing markets property as a developed farm estate, not raw land"
     }
   ],
-  "market_read": "Week 14 snapshot: 10 verified rows (0 new, 10 persisting, 1 gone), 0 indicative. The Pila Bulilan Norte listing (6,447 sqm, PHP 2,000/sqm) returned 404 this week — the first confirmed deletion in 14 weeks; if it sold, PHP 2,000/sqm is the first probable clearing price in this dataset and the strongest signal yet for ring-municipality pricing. Verified range PHP 269–2,800/sqm; dataset median PHP 1,750/sqm (midpoint of 5th and 6th rows sorted by price per sqm); Pagsanjan-core holds 4 rows (PHP 850–2,000/sqm) with a core median of PHP 1,300/sqm. Ring municipalities cluster PHP 2,000–2,800/sqm except for the distressed Pila Mojon outlier at PHP 269/sqm. For a raw 0.5–1 ha Pagsanjan parcel, recommended asking range PHP 1,400–1,800/sqm; fastest-sale price PHP 900–1,000/sqm. If the Bulilan Norte deletion is confirmed as a sale, the realistic ceiling for Pagsanjan-core at quick-sale pricing is likely PHP 1,500–2,000/sqm."
+  "market_read": "Week 15 snapshot: 10 verified rows (0 new, 10 persisting, 0 gone), 0 indicative. The dataset has been fully static for two consecutive weeks — no new listings entered, no listings departed, and no prices changed. Verified range PHP 269–2,800/sqm; dataset median PHP 1,750/sqm (midpoint of 5th and 6th rows sorted by price per sqm); Pagsanjan-core holds 4 rows (PHP 850–2,000/sqm, core median PHP 1,300/sqm). Ring municipalities cluster PHP 1,500–2,800/sqm except for the Pila Mojon outlier at PHP 269/sqm (now in its fifteenth week unchanged, suggesting a price that has not attracted buyers at this level either). A notable signal this week: a third agent listing for the same Sisilmin/Caliraya parcel appeared tagged under Lumban at PHP 18,500,000 and explicitly disclosed a price reduction from PHP 23,500,000 — the seller has now cut the ask by 21% versus the original price, yet the original agent's listing at PHP 23,503,200 remains live simultaneously. For a raw 0.5–1 ha Pagsanjan parcel, recommended asking range PHP 1,400–1,800/sqm; fastest-sale price PHP 900–1,000/sqm. With no new confirmed exits this week, pricing signal from cleared inventory remains limited to the single prior Bulilan Norte exit at PHP 2,000/sqm."
 }
